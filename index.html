@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Multipecas Lupatini</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+    h1 { text-align: center; color: #333; }
+    .busca { margin-bottom: 20px; width: 100%; max-width: 400px; margin: 0 auto 30px; display: block; padding: 10px; font-size: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card h2 { font-size: 18px; margin: 10px 0; }
+    .card p { color: green; font-weight: bold; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Catálogo de Peças - Multipecas Lupatini</h1>
+  <input class="busca" type="text" placeholder="Buscar peça..." onkeyup="filtrar(this.value)" />
+  <div id="grid" class="grid"></div>
+
+  <script>
+    const pecas = [
+      { nome: "Pastilha de Freio Dianteira - Chevrolet Onix", preco: "R$ 120,00", imagem: "https://via.placeholder.com/220x150?text=Pastilha+Onix" },
+      { nome: "Filtro de Óleo - Ford Ka", preco: "R$ 35,00", imagem: "https://via.placeholder.com/220x150?text=Filtro+Ford+Ka" },
+      { nome: "Amortecedor Traseiro - Renault Sandero", preco: "R$ 210,00", imagem: "https://via.placeholder.com/220x150?text=Amortecedor+Sandero" },
+      { nome: "Velas de Ignição - Chevrolet Corsa", preco: "R$ 45,00", imagem: "https://via.placeholder.com/220x150?text=Velas+Corsa" },
+      { nome: "Bomba de Combustível - Ford Fiesta", preco: "R$ 290,00", imagem: "https://via.placeholder.com/220x150?text=Bomba+Fiesta" },
+      { nome: "Kit Embreagem - Renault Logan", preco: "R$ 560,00", imagem: "https://via.placeholder.com/220x150?text=Embreagem+Logan" },
+      { nome: "Coxim do Motor - Chevrolet Prisma", preco: "R$ 98,00", imagem: "https://via.placeholder.com/220x150?text=Coxim+Prisma" },
+      { nome: "Farol Direito - Ford EcoSport", preco: "R$ 480,00", imagem: "https://via.placeholder.com/220x150?text=Farol+EcoSport" },
+      { nome: "Lanterna Traseira - Renault Duster", preco: "R$ 230,00", imagem: "https://via.placeholder.com/220x150?text=Lanterna+Duster" },
+      { nome: "Disco de Freio - Chevrolet Spin", preco: "R$ 160,00", imagem: "https://via.placeholder.com/220x150?text=Disco+Spin" },
+      { nome: "Filtro de Ar - Ford Focus", preco: "R$ 29,00", imagem: "https://via.placeholder.com/220x150?text=Filtro+Focus" },
+      { nome: "Sensor de Temperatura - Renault Kwid", preco: "R$ 75,00", imagem: "https://via.placeholder.com/220x150?text=Sensor+Kwid" }
+    ];
+
+    function mostrarPecas(lista) {
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      lista.forEach(p => {
+        grid.innerHTML += `
+          <div class="card">
+            <img src="${p.imagem}" alt="${p.nome}" />
+            <h2>${p.nome}</h2>
+            <p>${p.preco}</p>
+          </div>
+        `;
+      });
+    }
+
+    function filtrar(texto) {
+      const filtradas = pecas.filter(p => p.nome.toLowerCase().includes(texto.toLowerCase()));
+      mostrarPecas(filtradas);
+    }
+
+    mostrarPecas(pecas);
+  </script>
+</body>
+</html>
